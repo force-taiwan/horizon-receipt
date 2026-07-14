@@ -1838,7 +1838,11 @@
       removeAttachedImage();
 
       try {
-        const response = await fetch("/api/parse", {
+        const apiUrl = window.location.hostname.includes("localhost") || window.location.hostname.includes("127.0.0.1")
+          ? "/api/parse"
+          : "https://horizon-receipt-en.force-chinese.workers.dev/api/parse";
+
+        const response = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
