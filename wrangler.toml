@@ -1,0 +1,11 @@
+name = "horizon-receipt-en"
+main = "src/index.js"
+compatibility_date = "2024-04-03"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[ai]
+binding = "AI"

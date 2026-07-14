@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地平線文化事業 | 領據 AI 小幫手 使用教學與手冊</title>
+  
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --accent-color: #f59e0b;
+      --accent-hover: #d97706;
+      --success-color: #10b981;
+      --font-primary: 'Outfit', 'Noto Sans TC', sans-serif;
+      --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      --border-radius: 16px;
+    }
+
+    /* Light Theme Settings */
+    body.light-theme {
+      --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(0, 0, 0, 0.06);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --accent-color: #d97706;
+      --accent-hover: #b45309;
+      --shadow: 0 8px 32px 0 rgba(148, 163, 184, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      font-family: var(--font-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .theme-toggle-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      width: 60px;
+      height: 60px;
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #ffffff, var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.light-theme h1 {
+      background: linear-gradient(to right, #0f172a, var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Main Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    /* Glassmorphism Cards */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-color);
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Video Player */
+    .video-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      background: #000;
+      aspect-ratio: 16/9;
+      margin-bottom: 1rem;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* List styling */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent-color);
+      padding: 0.5rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-content p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    /* Button and Links */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      border: none;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border: 1px solid var(--card-border);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .resource-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .resource-link:hover {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: var(--accent-color);
+    }
+
+    .resource-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo-badge">H</div>
+      <h1>地平線文化事業 | 領據 AI 小幫手</h1>
+      <p class="subtitle">自動化填單、手寫多模態識別、智慧糾錯與所得稅率雙向計算說明頁</p>
+      
+      <!-- Theme Toggle -->
+      <button class="theme-toggle-btn" onclick="toggleTheme()" title="切換深淺色主題">
+        <i id="theme-icon" data-lucide="sun" style="width:20px;height:20px;"></i>
+      </button>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="grid">
+      <!-- Left Column: Video and Features -->
+      <div>
+        <!-- Video Card -->
+        <div class="card">
+          <div class="card-title">
+            <i data-lucide="video"></i>
+            <span>小幫手操作示範影片 (Screen Recording)</span>
+          </div>
+          
+          <div class="video-container">
+            <video controls preload="metadata" poster="mock_handwritten_1.png">
+              <source src="demo_recording.mp4" type="video/mp4">
+              您的瀏覽器不支援播放此影片格式。
+            </video>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); text-align: center; margin-top: 0.5rem;">
+            示範影片：展示了如何使用文字輸入以及上傳手寫單據進行 AI 自動填表的過程。
+          </p>
+        </div>
+
+        <!-- Features Detail Card -->
+        <div class="card">
+          <div class="card-title">
+            <i data-lucide="sparkles"></i>
+            <span>領據系統核心亮點功能</span>
+          </div>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <div class="feature-icon"><i data-lucide="message-square-plus"></i></div>
+              <div class="feature-content">
+                <h4>多輪增量語意填表 (HITL)</h4>
+                <p>AI 小幫手採用記憶式增量合併演算法。您輸入或修改新欄位時，AI 只會針對新增的資料做回應與更新，而不會覆蓋掉您先前已經正確填寫完畢的欄位，實現自然的對話式填單體驗。</p>
+              </div>
+            </li>
+            
+            <li class="feature-item">
+              <div class="feature-icon"><i data-lucide="image"></i></div>
+              <div class="feature-content">
+                <h4>手寫圖片多模態 OCR 解析</h4>
+                <p>支援直接拍照或上傳領據草稿、手寫便簽圖片。後端採用 Gemini 3.1 Flash-Lite 多模態視覺模型進行原生 OCR 識別，能精準提取手寫姓名、身分證字號、金額與門號等資訊。</p>
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-icon"><i data-lucide="maximize-2"></i></div>
+              <div class="feature-content">
+                <h4>前端自動尺寸與品質壓縮</h4>
+                <p>在上傳手寫單據照片前，瀏覽器會自動在背景將大圖等比例收縮（長邊最大 1280px）並以 75% 品質轉換為 JPEG 格式。能有效節省 95% 以上的頻寬，降低辨識延遲並節省 API Token 折耗。</p>
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="feature-content">
+                <h4>智慧糾錯與預判斷機制</h4>
+                <p>自動預判手機 (09開頭) 與市話；並依據台灣地理資料自動糾正地名 typo 錯字（如永坑區糾正為永康區，苓牙區糾正為苓雅區），防範人為或語音輸入產生的低級錯誤。</p>
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-icon"><i data-lucide="percent"></i></div>
+              <div class="feature-content">
+                <h4>雙向稅率與扣繳額聯動計算</h4>
+                <p>輸入金額與身分資料後，系統能智慧判別所得類別（本國籍/外籍、執行業務/租金/薪資等），自動套用正確稅率並計算扣繳稅額與實領金額，提供人工填單覆檢雙向校對。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Navigation and Resources -->
+      <div>
+        <!-- Quick Action Card -->
+        <div class="card" style="border: 2px solid var(--accent-color);">
+          <div class="card-title">
+            <i data-lucide="play-circle"></i>
+            <span>快速開始 (Quick Link)</span>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            點擊下方按鈕即可返回領據填表系統，體驗最先進的 AI 自動表單填寫！
+          </p>
+          <a href="index.html" class="btn">
+            <i data-lucide="arrow-left-circle"></i>
+            <span>進入領據填寫系統</span>
+          </a>
+        </div>
+
+        <!-- Download Resources Card -->
+        <div class="card">
+          <div class="card-title">
+            <i data-lucide="download-cloud"></i>
+            <span>下載專區 (Download Center)</span>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            您可以在此下載專用手寫字型以及為您模擬的手寫單範例圖片：
+          </p>
+          
+          <div class="resource-list">
+            <!-- Font Download -->
+            <a href="JasonHandwriting3.ttf" download class="resource-link">
+              <div class="resource-info">
+                <i data-lucide="font" style="color: var(--accent-color);"></i>
+                <div>
+                  <div style="font-weight: 500;">清松手寫體 3 號 (.ttf)</div>
+                  <div style="font-size: 0.75rem; opacity: 0.7;">可愛繁體手寫字型檔 • 5.9MB</div>
+                </div>
+              </div>
+              <i data-lucide="download" style="width:16px;height:16px;"></i>
+            </a>
+
+            <!-- Mock 1 Download -->
+            <a href="mock_handwritten_1.png" download class="resource-link">
+              <div class="resource-info">
+                <i data-lucide="file-image" style="color: var(--success-color);"></i>
+                <div>
+                  <div style="font-weight: 500;">模擬手寫單 1 (本國籍)</div>
+                  <div style="font-size: 0.75rem; opacity: 0.7;">金額：16888 元 • 執行業務</div>
+                </div>
+              </div>
+              <i data-lucide="download" style="width:16px;height:16px;"></i>
+            </a>
+
+            <!-- Mock 2 Download -->
+            <a href="mock_handwritten_2.png" download class="resource-link">
+              <div class="resource-info">
+                <i data-lucide="file-image" style="color: #6366f1;"></i>
+                <div>
+                  <div style="font-weight: 500;">模擬手寫單 2 (外籍人士)</div>
+                  <div style="font-size: 0.75rem; opacity: 0.7;">約hn Smith • 租金領據</div>
+                </div>
+              </div>
+              <i data-lucide="download" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Video Download Card -->
+        <div class="card">
+          <div class="card-title">
+            <i data-lucide="file-video"></i>
+            <span>原始影片下載</span>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            您也可以直接下載本次螢幕錄影的原始 MP4 影片檔案存檔：
+          </p>
+          <a href="demo_recording.mp4" download="螢幕錄影_2026-07-14.mp4" class="btn btn-secondary">
+            <i data-lucide="download"></i>
+            <span>下載示範錄影影片 (MP4)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 地平線文化事業股份有限公司 (Horizon Cultural Enterprise Co., Ltd.). 版權所有.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        themeIcon.setAttribute('data-lucide', 'sun');
+        localStorage.setItem('guide-theme', 'dark');
+      } else {
+        body.classList.add('light-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+        localStorage.setItem('guide-theme', 'light');
+      }
+      lucide.createIcons();
+    }
+
+    // Load Saved Theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('guide-theme');
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'light') {
+        body.classList.add('light-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      } else {
+        body.classList.remove('light-theme');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      }
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

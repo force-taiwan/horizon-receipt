@@ -1,0 +1,13 @@
+# Cloudflare Wrangler
+.wrangler/
+.dev.vars
+
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
