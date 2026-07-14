@@ -1,3 +1,10 @@
+/**
+ * @file index.js
+ * @description Cloudflare Worker backend for Horizon Receipt Form Builder
+ * @copyright Falo x Force Cheng 2026/7/14
+ * @license MIT
+ */
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
